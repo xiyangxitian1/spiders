@@ -6,15 +6,19 @@ from urllib import parse
 import pymysql
 import re
 import os
+import random
+from bilivideo import saveimg
 
 header = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
+    # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
 }
 
+
 # 请求图片时使用的header
-header1 = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
-}
+# header1 = {
+#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
+# }
 
 
 def answer(url_):
@@ -44,8 +48,8 @@ while offset < answer_total:
         for index, data_ in enumerate(data):
             voteup_count = data[index]['voteup_count']
             #  根据点赞的数量选出点赞多的
-            if voteup_count < 20000:
-                break
+            if voteup_count < 800:
+                continue
             # 答主的知乎主页
             author_url = "https://www.zhihu.com/people/" + \
                          data[index]['author']['url_token'] + "/activities"
@@ -64,9 +68,12 @@ while offset < answer_total:
                 break
             else:
                 for img_url in img_urls:
-                    print('imgUrl:' + img_url)
+                    l = str(time.time()).replace('.', '')
+                    imgpath = 'G:\\downs\\img\\' + l + ".jpg"
+                    saveimg.save_img(img_url, imgpath, header)
+                    print('imgUrl:' + img_url + '下载成功！')
                     # if isinstance(img_url, list):
                     #     for img_url_zi in img_url:
                     #         print('zi:'+img_url_zi)
 
-                    time.sleep(1)
+                    time.sleep(random.randint(1, 3))
