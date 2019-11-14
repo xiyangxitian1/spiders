@@ -25,7 +25,6 @@ def get_all_list():
 
 def get_data(url):
     response = requests.get(url)
-
     if response.status_code == 200:
         html = response.content.decode(response.apparent_encoding, 'ignore')
         return html
