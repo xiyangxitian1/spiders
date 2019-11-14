@@ -51,7 +51,9 @@ def queryStu():
 
 
 def showAll():
-    pass
+    print('当前系统中有以下学生：')
+    for stuID in students:  # 等同于 students.keys()
+        print('{}:{}'.format(stuID, students[stuID]))
 
 
 def exitStu():
