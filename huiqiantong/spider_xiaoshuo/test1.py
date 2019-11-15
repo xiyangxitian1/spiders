@@ -1,2 +1,5 @@
-with open('f:/三寸人间-耳根.txt', 'w') as f:
-    f.write('abc')
+import requests
+
+url = 'https://movie.douban.com/top250?start=300'
+resp = requests.get(url)
+print(resp.ok)
