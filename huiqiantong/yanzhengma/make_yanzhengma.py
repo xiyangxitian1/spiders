@@ -11,8 +11,8 @@ pip install pillow
 Pillow_PIL  现在用的是这个包
 '''
 
-from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 
 mylist = []
 
@@ -78,3 +78,4 @@ def gen_code():
 
 if __name__ == '__main__':
     gen_code()
+
