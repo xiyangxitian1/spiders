@@ -1,6 +1,6 @@
+import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
 
 url = 'http://www.tianqihoubao.com/aqi/beijing-201812.html'
 
@@ -45,6 +45,7 @@ def getcontent2(url):
         soup = BeautifulSoup(html, 'lxml')
         table = soup.find('table', class_='b')
         df = pd.read_html(table.prettify(), header=0)
+        # print(df)
         # print(df[0])
         # print(type(df))
         df[0].to_csv('results.csv', header=None, encoding='utf-8-sig', mode='a')
