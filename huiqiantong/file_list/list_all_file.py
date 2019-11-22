@@ -5,6 +5,7 @@ files = {}
 root_dir = r'D:\allfile'
 
 
+
 def list_file(root_dir, KB=True, MB=False):
     if os.path.isfile(root_dir):
         size = file_size(root_dir, KB=KB, MB=MB)
